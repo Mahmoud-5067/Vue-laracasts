@@ -1,9 +1,10 @@
 import Assignment from "./Assignment.js";
+import AssignmentTags from "./AssignmentTags.js";
 
 export default {
-
   components: {
-    Assignment
+    Assignment,
+    AssignmentTags,
   },
 
   template: `
@@ -14,9 +15,14 @@ export default {
         ({{ assignments.length }})
       </h2>
 
+      <assignment-tags 
+        v-model="currentTag"
+        :initial-tags="assignments.map(a => a.tag)"
+      />
+
       <ul class="border border-gray-600 divide-y divide-gray-600">
         <assignment 
-          v-for="assignment in assignments"
+          v-for="assignment in fiteredAssignments"
           :key="assignment.id"
           :assignment="assignment"
         ></assignment>
@@ -26,7 +32,22 @@ export default {
   `,
 
   props: {
-      assignments: Array,
-      title: String,
-  }
+    assignments: Array,
+    title: String,
+  },
+
+  data() {
+    return {
+      currentTag: "all",
+    };
+  },
+
+  computed: {
+    fiteredAssignments() {
+      if (this.currentTag === 'all') {
+        return this.assignments;
+      }
+      return this.assignments.filter(a => a.tag === this.currentTag);
+    },
+  },
 };

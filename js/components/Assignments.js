@@ -17,9 +17,9 @@ export default {
   data() {
     return {
       assignments: [
-        { name: "Finish project", complete: false, id: 1 },
-        { name: "Read Chapeter 4", complete: false, id: 2 },
-        { name: "Turn in Homework", complete: false, id: 3 },
+        { name: "Finish project", complete: false, id: 1 , tag: 'math'},
+        { name: "Read Chapeter 4", complete: false, id: 2 , tag: 'science'},
+        { name: "Turn in Homework", complete: false, id: 3 , tag: 'math'},
       ],  
 
     };
@@ -40,6 +40,7 @@ export default {
         name: name,
         complete: false,
         id: this.assignments.length + 1,
+        tag: null
       });
 
     }
