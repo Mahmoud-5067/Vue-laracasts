@@ -1,6 +1,6 @@
 export default {
   template: `
-    <div class="flex space-x-2 mb-8">
+    <div class="flex gap-2 mb-6 flex-wrap">
     <button 
     @click="$emit('update:modelValue', tag)"
       v-for='tag in tags'
