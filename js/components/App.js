@@ -10,7 +10,7 @@ export default {
     <div class="grid gap-6">
       <assignments></assignments>
       
-      <panel> Test </panel>
+      <panel> Dynamic Panel </panel>
     </div>
   `,
 };
