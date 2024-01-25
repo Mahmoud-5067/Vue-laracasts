@@ -1,19 +1,26 @@
 import Assignment from "./Assignment.js";
 import AssignmentTags from "./AssignmentTags.js";
+import Panel from "./Panel.js";
 
 export default {
   components: {
     Assignment,
     AssignmentTags,
+    Panel
   },
 
   template: `
-    <section v-show="assignments.length">
-      <h2 class="font-bold mb-2">
+    <panel v-show="assignments.length" class="w-60">
+      
+      <div class="flex items-start justify-between">
+        <h2 class="font-bold mb-2">
         {{ title }}
-
+        
         ({{ assignments.length }})
-      </h2>
+        </h2>
+
+        <button v-show="canToggle" @click="$emit('toggle')">&times;</button>
+      </div>
 
       <assignment-tags 
         v-model="currentTag"
@@ -28,12 +35,17 @@ export default {
         ></assignment>
       </ul>
       
-    </section>
+      <slot></slot>
+    </panel>
   `,
 
   props: {
     assignments: Array,
     title: String,
+    canToggle: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data() {
